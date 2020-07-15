@@ -1,5 +1,6 @@
 const express = require('express');
 const Joi = require('joi');
+const validateGenre = require('./validate');
 const port = process.env.PORT || 3000;
 const app = express();
 
@@ -93,14 +94,6 @@ app.delete('/api/genres/:id', (req, res) => {
     res.send(deletedGenre);
     
 });
-
-function validateGenre(genre) {
-    const schema = {
-        name: Joi.string().min(3).max(20).required()
-    };
-
-    return Joi.validate(course, schema);
-}
 
 
 app.listen(port, () => console.log(`Listening on port ${port}...`)
