@@ -45,7 +45,7 @@ app.get('/api/genres', (req, res) => {
 
 app.get('/api/genres/:id', (req, res) => {
 
-    const id = req.params.id;
+    const { id } = req.params;
     const genre = genres.find( genre => genre.id === parseInt(id));
     if(!genre) return res.status(404).send('Your search parameter is invalid');
     
@@ -58,7 +58,7 @@ app.post('/api/genres', (req, res) => {
     const { error } =  validateGenre(req.body);
     if(error ) return res.status(400).send(error.details[0].message);
 
-    const {name} = req.body;
+    const { name } = req.body;
     const newGenre = {
         id: genres.length + 1,
         name: name
